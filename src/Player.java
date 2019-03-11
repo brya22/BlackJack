@@ -5,44 +5,43 @@
  */
 
 /**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
+ * A class that models each Player in the game. Players have an identifier, which should be unique (name).
  * @author Bryan pacher, 2019
  */
-public abstract class Player
-{
-    private String playerID; //the unique ID for this player
 
-    /**
-     * A constructor that allows you to set the player's unique ID
-     * @param name the unique ID to assign to this player.
-     */
-    public Player(String name)
-    {
+//unneeded abstract classes, to many files will cause confusion and is very extra.
 
-        playerID= name;
+import java.util.ArrayList;
+
+class Player {
+    ArrayList<Hand> hand;
+
+    Player() {
+        hand = new ArrayList<Hand>();
     }
 
-    /**
-     * @return the playerID
-     */
-    public String getPlayerID()
-    {
-        return playerID;
+    public boolean hasBJ(int handnum) {
+        Hand[] aHand = new Hand[] {};
+        aHand = hand.toArray(aHand);
+        return (aHand[handnum-1].getHandSize() == 2 && aHand[handnum-1].getHandValue() == 21);
     }
 
-    /**
-     * Ensure that the playerID is unique
-     * @param givenID the playerID to set
-     */
-    public void setPlayerID(String givenID)
-    {
-        playerID = givenID;
+    public boolean Busted() {
+        Hand[] aHand = new Hand[] {};
+        aHand = hand.toArray(aHand);
+        return (aHand[0].getHandValue() > 21);
     }
 
-    /**
-     * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
-     */
-    public abstract void play();
+    public Hand gHand(int handnum) {
+        Hand[] aHand = new Hand[] {};
+        aHand = hand.toArray(aHand);
+        return aHand[handnum-1];
+    }
 
+    public void getNewHand(Deck deck) {
+        hand.clear();
+        Hand myHand = new Hand(deck);
+        hand.add(myHand);
+    }
 }
+
