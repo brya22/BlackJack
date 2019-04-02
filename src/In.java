@@ -41,6 +41,20 @@ class In {
         return bet;
     }
 
+    public boolean Yes() {
+        Scanner doubledown = new Scanner(System.in);
+        String doubled = doubledown.nextLine();
+        while (!YesorNo(doubled)) {
+            outputter.yesOrNo();
+            doubled = doubledown.nextLine();
+        }
+        return doubled.equals("yes");
+    }
+
+    public boolean YesorNo(String answer) {
+        return (answer.equals("yes") || answer.equals("no"));
+    }
+
     public boolean Hit() {
         Scanner hitter = new Scanner(System.in);
         String hit = hitter.nextLine();
